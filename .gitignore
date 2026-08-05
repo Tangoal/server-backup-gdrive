@@ -1,0 +1,7 @@
+# Configuration locale d'un serveur : remote rclone, clé API Resend.
+.env
+
+# Générées par install.sh dans /etc/systemd/system, jamais versionnées : leur
+# ExecStart et User dépendent du chemin et de l'utilisateur de la machine.
+server-backup-gdrive.service
+server-backup-gdrive.timer
