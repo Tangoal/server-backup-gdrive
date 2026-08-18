@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 # Installe (ou réinstalle) le service et le timer de sauvegarde sur CETTE machine.
 #
-# Le dépôt est partagé entre ghost et le VPS : l'unité systemd ne peut donc pas
-# être versionnée avec un chemin ou un utilisateur en dur (chemin différent :
-# /home/tangoal vs /home/ubuntu ; utilisateur différent : root sur ghost, qui a
-# besoin de lire /etc/cloudflared et /etc/ufw, ubuntu sur le VPS qui n'a pas de
-# sudo sans mot de passe). Générée ici à partir du chemin réel du script et de
-# l'utilisateur passé en argument — jamais commitée, jamais dans le dépôt.
+# Le dépôt peut être partagé entre plusieurs serveurs : l'unité systemd ne peut
+# donc pas être versionnée avec un chemin ou un utilisateur en dur (le chemin
+# d'installation et l'utilisateur du service peuvent différer d'une machine à
+# l'autre — ex. root sur un serveur qui doit lire des configs système, un
+# utilisateur sans sudo sans mot de passe sur un autre). Générée ici à partir
+# du chemin réel du script et de l'utilisateur passé en argument — jamais
+# commitée, jamais dans le dépôt.
 #
 # Usage : sudo ./install.sh <utilisateur-du-service>
-#   sudo ./install.sh root      # ghost
-#   sudo ./install.sh ubuntu    # VPS
+#   sudo ./install.sh root      # ex: serveur nécessitant un accès root
+#   sudo ./install.sh ubuntu    # ex: serveur cloud standard
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
