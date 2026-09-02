@@ -92,12 +92,12 @@ RCLONE=(rclone --config "$RCLONE_CONFIG" --stats=0)
 send_report() {
   local body subject
   if [ ${#ERRORS[@]} -gt 0 ]; then
-    subject="$BACKUP_SUBJECT_PREFIX ÉCHEC (${#ERRORS[@]}) — $DATE ❌"
+    subject="$BACKUP_SUBJECT_PREFIX [❌ ÉCHEC (${#ERRORS[@]})] — $DATE"
   else
     if [ "$BACKUP_MAIL_ON_SUCCESS" != "1" ]; then
       return 0
     fi
-    subject="$BACKUP_SUBJECT_PREFIX OK — $DATE ✅"
+    subject="$BACKUP_SUBJECT_PREFIX [✅ OK] — $DATE"
   fi
 
   body="Sauvegarde $BACKUP_LABEL du $DATE"
